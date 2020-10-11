@@ -1,4 +1,6 @@
 import feathers from "@feathersjs/feathers";
+import express from "@feathersjs/express";
+import socketio from "@feathersjs/socketio";
 
 interface Message {
   id?: number;
