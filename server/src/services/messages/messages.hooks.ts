@@ -1,27 +1,29 @@
-import * as authentication from '@feathersjs/authentication';
+import * as authentication from "@feathersjs/authentication";
+import processMessage from "../../hooks/process-message";
+import populateUser from '../../hooks/populate-user';
 // Don't remove this comment. It's needed to format import lines nicely.
 
 const { authenticate } = authentication.hooks;
 
 export default {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate("jwt")],
     find: [],
     get: [],
-    create: [],
+    create: [processMessage()],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
-    all: [],
+    all: [populateUser()],
     find: [],
     get: [],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -31,6 +33,6 @@ export default {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };
